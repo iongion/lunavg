@@ -1,0 +1,15 @@
+{
+  "files.associations": {
+    "*.jst": "html",
+    "*.asc": "javascript",
+    "internal.h": "c",
+    "lunavg.h": "c",
+    "lautoc.h": "c",
+    "nanosvg.h": "c",
+    "nanovg.h": "c",
+    "lualib.h": "c",
+    "lauxlib.h": "c",
+    "nanovg_gl.h": "c",
+    "lua.h": "c"
+  }
+}

@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "name": "gnu",
+            "cwd": "${workspaceFolder}",
+            "includePath": [
+                "W:/SDKs/msys2/usr/local/include",
+                "W:/SDKs/msys2/opt/lib/gcc/x86_64-w64-mingw32/6.3.0/include",
+                "W:/SDKs/msys2/opt/lib/gcc/x86_64-w64-mingw32/6.3.0/include-fixed",
+                "W:/SDKs/msys2/opt/x86_64-w64-mingw32/include",
+                "W:/SDKs/msys2/usr/include",
+                "W:/SDKs/msys2/mingw64/include",
+                "/usr/local/include",
+                "/usr/lib/gcc/x86_64-linux-gnu/5/include",
+                "/usr/include",
+                "./thirdparty/LuaAutoC",
+                "./thirdparty/nanovg/src",
+                "./thirdparty/nanosvg/src",
+                "./src"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "W:/SDKs/msys2/usr/local/include",
+                    "W:/SDKs/msys2/opt/lib/gcc/x86_64-w64-mingw32/6.3.0/include",
+                    "W:/SDKs/msys2/opt/lib/gcc/x86_64-w64-mingw32/6.3.0/include-fixed",
+                    "W:/SDKs/msys2/mingw64/include*",
+                    "W:/SDKs/msys2/usr/include",
+                    "W:/SDKs/msys2/include*",
+                    "/usr/local/include",
+                    "/usr/lib/gcc/x86_64-linux-gnu/5/include",
+                    "/usr/include",
+                    "./thirdparty/LuaAutoC",
+                    "./thirdparty/nanovg/src",
+                    "./thirdparty/nanosvg/src",
+                    "./src"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 3
+}
