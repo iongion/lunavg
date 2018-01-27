@@ -1,7 +1,3 @@
-[submodule "thirdparty/LuaAutoC"]
-	path = thirdparty/LuaAutoC
-	url = git@github.com:orangeduck/LuaAutoC.git
-	branch = master
 [submodule "thirdparty/nanosvg"]
 	path = thirdparty/nanosvg
 	url = git@github.com:memononen/nanosvg.git
