@@ -28,5 +28,19 @@
 
 #define LUNAVG_NAME "LunaVG"
 #define LUNAVG_VERSION "1.0"
+#define LUA_COMPAT_APIINTCASTS
+#define NANOVG_GL2_IMPLEMENTATION
+
+#include <GL/glew.h>
+
+#include <lua.h>
+
+#include "lualib.h"
+#include "lauxlib.h"
+// #include "lautoc.h"
+
+#include "nanovg.h"
+#include "nanosvg.h"
+#include "nanovg_gl.h"
 
 #endif

@@ -29,10 +29,7 @@ ifeq ($(D),1)
 DEBUG=1
 endif
 
-LUALIBS = `pkg-config --libs lua${LUAVER}`
-LUACFLAGS = `pkg-config --cflags lua${LUAVER}`
-
-LIBS += -L./../thirdparty/nanovg/build -lnanovg -L./../thirdparty/LuaAutoC -llautoc $(LUALIBS)
+LIBS += `pkg-config --libs lua${LUAVER}` -L./../thirdparty/nanovg/build -lnanovg
 
 ifdef LINUX
 LIBS += -lGLEW -lGLU -lGL -lm
@@ -41,7 +38,8 @@ ifdef MINGW
 LIBS += -lopengl32 -lglew32
 endif
 
-INCDIR = -I./../thirdparty/LuaAutoC -I./../thirdparty/nanovg/src -I./../thirdparty/nanosvg/src
+# INCDIR = -I./../thirdparty/LuaAutoC -I./../thirdparty/nanovg/src -I./../thirdparty/nanosvg/src
+INCDIR = -I./../thirdparty/nanovg/src -I./../thirdparty/nanosvg/src
 
 Tgt	:= lunavg
 Src := $(wildcard *.c)
@@ -56,7 +54,7 @@ ifdef MINGW
 COPT	+= -Wno-implicit-fallthrough #@@
 endif
 COPT	+= -std=c11
-COPT	+= $(LUACFLAGS)
+COPT	+= `pkg-config --cflags lua${LUAVER}`
 COPT	+= -DLUAVER=$(LUAVER)
 ifdef LINUX
 COPT	+= -fPIC
@@ -64,7 +62,6 @@ COPT	+= -DLINUX
 endif
 ifdef MINGW
 COPT	+= -DMINGW
-COPT	+= -lmingw64
 endif
 ifdef DEBUG
 COPT	+= -DDEBUG
@@ -79,18 +76,10 @@ ifdef MINGW
 OEXT := dll
 endif
 
-override CFLAGS = $(COPT) $(INCDIR) -I./../thirdparty/LuaAutoC -L./../thirdparty/nanovg/build -lnanovg
+# override CFLAGS = $(COPT) $(INCDIR) -L./../thirdparty/LuaAutoC -llautoc -L./../thirdparty/nanovg/build -lnanovg
+override CFLAGS = $(COPT) $(INCDIR) -L./../thirdparty/nanovg/build -lnanovg
 
 default: build
-
-libLuaAutoC_build:
-	@echo "Building LuaAutoC"
-	@cd ../thirdparty/LuaAutoC; $(MAKE) all
-#	gcc -std=gnu99 -Wall -Werror -Wno-unused -O3 -g $(LUACFLAGS) $(LUALIBS) -shared -c ../thirdparty/LuaAutoC/lautoc.c
-
-libLuaAutoC_clean:
-	@echo "Cleaning LuaAutoC"
-	@cd ../thirdparty/LuaAutoC &&	$(MAKE) clean
 
 libnanovg_build:
 	@echo "Building nanovg"
@@ -112,7 +101,7 @@ where:
 	@echo $(H_DIR)
 	@echo $(S_DIR)
 
-clean: libLuaAutoC_clean libnanovg_clean
+clean: libnanovg_clean
 	@-rm -f *.$(OEXT) *.o *.err *.map *.S *~ *.log
 	@-rm -f $(Tgt).symbols
 
@@ -137,7 +126,7 @@ uninstall:
 	@-rm -fr $(L_DIR)/$(Tgt)
 	@-rm -f $(C_DIR)/$(Tgt).$(OEXT)
 
-build: libLuaAutoC_build libnanovg_build $(Tgt)
+build: libnanovg_build $(Tgt)
 
 symbols: build
 	@objdump -T $(Tgt).$(OEXT) > $(Tgt).symbols

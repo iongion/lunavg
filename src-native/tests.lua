@@ -1,12 +1,40 @@
+-- NanoVG = {
+--   version = "1.0.1"
+-- }
+-- NanoVG_mt = { __index = NanoVG }
+-- function NanoVG:new(flags)
+--   return setmetatable( {flags=flags}, NanoVG_mt)
+-- end
+-- function NanoVG:dummyVersion()
+--   return self.version
+-- end
+-- 
+-- NanoSVG = {}
+-- NanoSVG_mt = { __index = NanoVG }
+-- function NanoVG:new(flags)
+--   return setmetatable( {flags=flags}, NanoVG_mt)
+-- end
+-- 
+-- vg = {
+--   NAME = "lunavg",
+--   VERSION = "1.0.0",
+--   NanoVG = NanoVG,
+--   NanoSVG = NanoSVG
+-- }
+-- 
+-- print(vg.VERSION)
+-- inst = vg.NanoVG.new(1)
+-- print(inst:dummyVersion())
 -- function __FILE__() return debug.getinfo(2,'S').source end
 -- function __DIR__() return string.gsub(debug.getinfo(2,'S').source, "^@(.+/)[^/]+$", "%1") end
 -- function __LINE__() return debug.getinfo(2, 'l').currentline end
 
 -- Usage:
 local pprint = require("pprint")
+local vg = require("lunavg")
+
 local glfw = require('moonglfw')
 local gl = require('moongl')
-local vg = require("lunavg")
 
 print(glfw._VERSION)
 print(glfw._GLFW_VERSION)
@@ -35,6 +63,26 @@ glfw.make_context_current(window)
 gl.init()
 glfw.swap_interval(1)
 
+pprint(vg.NAME)
+pprint(vg.VERSION)
+pprint(vg.NanoVG)
+pprint(vg.NanoSVG)
+
+inst = vg.NanoSVG.new(384)
+pprint(inst)
+pprint(vg.NanoSVG.dumpVersion)
+vg.NanoSVG.dumpVersion()
+-- pprint(inst)
+-- pprint(inst)
+-- pprint(inst)
+-- pprint(inst)
+
+-- pprint(vg.NanoVG.new(1))
+
+-- pprint(NanoVG)
+-- pprint(NanoSVG)
+-- pprint(NanoSVG.new(1))
+
 collectgarbage()
 collectgarbage('stop')
 while not glfw.window_should_close(window) do
@@ -42,8 +90,8 @@ while not glfw.window_should_close(window) do
    local ratio = width/height
    gl.viewport(0, 0, width, height)
    gl.clear('color')
-   --vg.BeginFrame(vg, width, height, ratio);
-   --vg.EndFrame(vg);
+   vg.BeginFrame(vg, width, height, ratio);
+   vg.EndFrame(vg);
    glfw.swap_buffers(window)
    collectgarbage('step')
    glfw.poll_events()

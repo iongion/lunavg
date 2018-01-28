@@ -6,3 +6,6 @@
 	path = thirdparty/nanovg
 	url = git@github.com:memononen/nanovg.git
 	branch = master
+[submodule "thirdparty/LuaAutoC"]
+	path = thirdparty/LuaAutoC
+	url = git@github.com:orangeduck/LuaAutoC.git
